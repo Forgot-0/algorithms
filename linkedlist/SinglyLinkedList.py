@@ -1,15 +1,15 @@
 
 
 class Node:
-    def __init__(self, obj, next=None) -> None:
-        self._obj = obj
+    def __init__(self, value, next=None) -> None:
+        self.value = value
         self.next = next
 
     def __str__(self) -> str:
-        return f'{self._obj} -> {self.next}'
+        return f'{self.value} -> {self.next}'
     
     def __eq__(self, __value: object) -> bool:
-        return self._obj == __value
+        return self.value == __value
 
 
 class LinkedList:
@@ -70,6 +70,50 @@ class LinkedList:
         self.lenght -= 1
 
         return node
+
+
+    def isPalindrome(self) -> bool:
+        slow, fast, prev = self.head, self.head, None
+
+        while fast and fast.next:
+            slow, fast = slow.next, fast.next.next
+
+        prev, slow, prev.next = slow, slow.next, None
+
+        while slow:
+            slow.next, prev, slow = prev, slow, slow.next
+
+        fast, slow = self.head, prev
+
+        while slow:
+            if fast.val != slow.val: return False
+            fast, slow = fast.next, slow.next
+
+        return True
+    
+    def reverseList(self):
+        prev = None
+    
+        node = self.head
+
+        while node:
+            next = node.next
+            node.next = prev
+
+            prev = node
+            node = next
+            
+        return prev      
+
+    def find(self, el) -> bool:
+        node = self.head
+        while node.next != self.tail:
+            if node.value == el:
+                return True
+            node = node.next
+        return False
+    
+
 
     def __str__(self) -> str:
         return str(self.head)

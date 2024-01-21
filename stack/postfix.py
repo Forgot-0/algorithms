@@ -74,9 +74,9 @@ def calc(lst: list) -> int:
 
 
 
-res = (infix_to_postfix('1+(2*2 - 3)'))
+res = (infix_to_postfix('1 + (2*2 - 3)'))
 # res = (infix_to_postfix('(+ 2 4)'))
 
 
-print(res)
+print(res[::-1])
 print(calc(res))

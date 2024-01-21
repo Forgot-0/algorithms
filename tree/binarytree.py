@@ -26,7 +26,7 @@ class Tree:
                     print(root)
                     root.left = node
                     break
-                
+
                 root = root.left
 
             elif data > root.data:
@@ -37,7 +37,7 @@ class Tree:
                 root = root.right
             else:
                 return 
-            
+
     def add_recursion(self, data) -> None:
         return self._add_recursion(data, self.root)
 
@@ -71,7 +71,7 @@ class Tree:
     def breadth_first(self):
         ans = []
         nodes = [self.root]
-        
+
         while nodes:
             node = nodes.pop(0)
             ans.append(node)
@@ -81,26 +81,25 @@ class Tree:
 
             if node.right:
                 nodes.append(node.right)
-            
-                
+
+
         return ans
-    
+
     def getMax(self) -> Node:
         return self._getMax(self, self.root)
-    
+
     def _getMax(self, node: Node) -> Node:
         if node == None: return None
         if node.right == None: return node
         return self._getMax(node.right)
-    
+
     def getMin(self) -> Node:
         return self._getMin(self, self.root)
-    
+
     def _getMin(self, node: Node) -> Node:
         if node == None: return None
         if node.left == None: return node
         return self._getMax(node.left)
-
 
     def __str__(self) -> str:
         return f'{self.root}'
